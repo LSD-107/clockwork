@@ -1,0 +1,55 @@
+body {
+    background-image: url('images/source.png');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+	color:white;
+	margin-bottom:70px;
+	font-size:50px;
+}
+
+ul {
+	color:white;
+	font-size;50px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.menu-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    border: 1px solid white;
+    transition: background-color 0.3s ease;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.source {
+	text-decoration: none;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href='style_menu.css'>
+    <title>Menu</title>
+</head>
+<body>
+    <img src="images/title.png" alt="Titre du jeu" />
+
+    <div class="menu-buttons">
+        <a href="version.html" class="button-menu1">Versions</a>
+        <a href="index.html" class="play-button">Play</a>
+        <a href="sources.html" class="button-menu2">Sources</a>
+    </div>
+
+    <footer>
+        <p>Ethan Maurice-Chavot Genève Titouan Delmas Alex Gallien Simon © 2024 - Tous droits réservés.</p>
+    </footer>
+    <script>
+        const audio = new Audio("musiques/menu.mp3");
+        audio.loop = true;
+        audio.volume = 0.5;
+
+        document.addEventListener("click", () => {
+            audio.play().catch(err => {
+                console.error("La lecture de la musique a échoué : ", err);
+            });
+        }, { once: true });
+    </script>
+</body>
+</html>
