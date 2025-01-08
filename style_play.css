@@ -234,6 +234,8 @@ button:disabled {
 
 .click-shop button {
     margin: 8px; /* 10px -> 8px */
+    color: black;
+
 }
 
 .trophies {
