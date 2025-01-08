@@ -1,0 +1,103 @@
+body {
+    background-image: url('images/menu.png');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column; 
+    height: 100vh;
+    overflow: hidden;
+}
+
+img {
+    max-width: 80%;
+    height: auto;
+    margin: 20px 0 80px 0;
+    position: relative;
+    top: 0;
+}
+
+.menu-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 10px;
+}
+
+.play-button {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 30px 60px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 3px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.play-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.play-button:focus {
+    outline: none;
+}
+
+.button-menu1, .button-menu2 {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+.button-menu1:hover, .button-menu2:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.button-menu1:active, .button-menu2:active {
+    transform: scale(0.97);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-menu1:focus, .button-menu2:focus {
+    outline: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
