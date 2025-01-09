@@ -58,16 +58,15 @@ ul li {
     color: black;
     cursor: pointer;
 }
-
 footer {
     text-align: center;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    background-color: #444;
     color: white;
-    font-size: 0.75rem;
-    position: relative; /* Ne gêne pas les petits écrans */
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .source {
