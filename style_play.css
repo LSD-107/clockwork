@@ -1,0 +1,274 @@
+/* Corps de la page */
+body {
+    background-image: url('images/index.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+    .game, .shop, .click-shop, .trophies {
+        width: 90%;
+        margin: 8px auto;
+    }
+
+    .click-shop, .trophies {
+        top: auto;
+        transform: none;
+    }
+}
+
+
+
+canvas {
+    display: block;
+}
+
+#particlesCanvas {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
+
+/* Section principale */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 16px; /* 20px -> 16px */
+}
+
+/* Div .game */
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    padding: 10px; /* 10px -> 8px */
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px; /* 10px -> 8px */
+    width: 400px; /* 500px -> 400px */
+    box-sizing: border-box;    
+    height: 97vh; /* 97vh -> 77.6vh */
+    padding-left: 16px; /* 20px -> 16px */
+    padding-right: 16px; /* 20px -> 16px */
+    margin-top: 16px; /* 20px -> 16px */
+}
+
+/* Bouton menu */
+.menu-button {
+    position: absolute;
+    top: 24px; /* 30px -> 24px */
+    left: 24px; /* 30px -> 24px */
+    padding: 8px 16px; /* 10px 20px -> 8px 16px */
+    font-size: 14.4px; /* 18px -> 14.4px */
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 4px; /* 5px -> 4px */
+    border: 1px solid white;
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: rgba(50, 50, 50, 0.9);
+}
+
+/* Compteur */
+#counter, #cps {
+    font-size: 32px; /* 40px -> 32px */
+    margin-bottom: 8px; /* 10px -> 8px */
+}
+
+/* Bouton Ajouter +1 */
+#compteur {
+    padding: 0;
+    padding-top: 80px; /* 100px -> 80px */
+    margin: 16px; /* 20px -> 16px */
+    border-radius: 8px; /* 10px -> 8px */
+    width: 220px; /* 275px -> 220px */
+    height: 220px; /* 275px -> 220px */
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+#compteur:active {
+    transform: scale(1.1);
+    filter: brightness(1.4);
+}
+
+#reset {
+    padding: 4px 8px; /* 5px 10px -> 4px 8px */
+    font-size: 11.2px; /* 14px -> 11.2px */
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    border-radius: 4px; /* 5px -> 4px */
+    transition: background-color 0.3s ease;
+}
+
+#reset:hover {
+    background-color: rgba(200, 200, 200, 0.9);
+}
+
+button:disabled {
+    background-color: lightgray; /* Couleur gris clair */
+    color: lightgray; /* Texte moins visible */
+    cursor: not-allowed; /* Indique un état désactivé */
+    opacity: 0.7; /* Légèrement transparent */
+}
+
+
+button {
+    padding: 8px 16px; /* 10px 20px -> 8px 16px */
+    font-size: 11.2px; /* 14px -> 11.2px */
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    border: none;
+    border-radius: 4px; /* 5px -> 4px */
+    transition: background-color 0.3s ease;
+    margin-bottom: 4px; /* 5px -> 4px */
+}
+
+button:hover {
+    background-color: rgba(200, 200, 200, 0.9);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 8px; /* 10px -> 8px */
+    background-color: #444;
+    color: white;
+    font-size: 11.2px; /* 14px -> 11.2px */
+}
+
+/* Section Shop */
+.shop {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: auto;
+    margin-top: 16px; /* 20px -> 16px */
+    padding: 8px; /* 10px -> 8px */
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px; /* 10px -> 8px */
+    width: 480px; /* 600px -> 480px */
+    box-sizing: border-box;
+}
+
+/* Section Building */
+.building {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px; /* 15px -> 12px */
+}
+
+button:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+
+
+.building img {
+    margin-right: 8px; /* 10px -> 8px */
+    width: 32px; /* 40px -> 32px */
+    height: 32px; /* 40px -> 32px */
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px; /* 10px -> 8px */
+    width: 100%;
+}
+
+/* Active Tab */
+.tab-button.active {
+    background-color: rgba(50, 50, 50, 0.9);
+}
+
+/* Contenu des Tabs */
+.tab-content {
+    display: none;
+    width: 100%;
+}
+
+.tab-content.hidden {
+    display: none;
+}
+
+.tab-content:not(.hidden) {
+    display: block;
+}
+
+.tab-content button {
+    width: 100%;
+}
+
+/* Click Shop */
+.click-shop {
+    position: absolute;
+    top: 16px; /* 20px -> 16px */
+    left: 47%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px; /* 10px -> 8px */
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px; /* 10px -> 8px */
+    width: 400px; /* 650px -> 520px */
+}
+
+.click-shop button {
+    margin: 8px; /* 10px -> 8px */
+    color: black;
+
+}
+
+.trophies {
+    position: absolute;
+    top: 215px; /* 250px -> 200px */
+    left: 47%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px; /* 10px -> 8px */
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px; /* 10px -> 8px */
+    width: 400px; /* 650px -> 520px */
+    box-shadow: 0px 3.2px 6.4px rgba(0, 0, 0, 0.5); /* Adjusted shadow */
+    z-index: 10;
+}
+
+.trophy {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    border-radius: 4px; /* 5px -> 4px */
+    padding: 4px 8px; /* 5px 10px -> 4px 8px */
+    margin: 4px 0; /* 5px -> 4px */
+    font-size: 12.8px; /* 16px -> 12.8px */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Liste des trophées */
+#trophy-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
