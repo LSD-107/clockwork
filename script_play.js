@@ -1,7 +1,6 @@
-
 	window.onload = () => {
-		updateCounterDisplay(); // Met à jour l'affichage du compteur
-		updateButtonStates(); // Met à jour les états des boutons
+		updateCounterDisplay();
+		updateButtonStates();
 		};
 
 	
@@ -514,7 +513,7 @@ function updateButtonStates() {
 
 
         document.getElementById('reset').addEventListener('click', () => {
-		if(confirm("Étes-vous sûr de vouloir rénitialiser votre partie ?"))
+		if(confirm("Êtes-vous sûr de vouloir rénitialiser votre partie ?"))
             counter = 0;
             clickValue = 1;
             currentUpgradeIndex = 0;
@@ -553,12 +552,19 @@ function updateButtonStates() {
                 'cristal-du-temps': 2100000000000000,
                 'observatoire-temporel': 26000000000000000
             };
+			let trophies = []; // Réinitialise la liste des trophées
 
+			const trophyList = document.getElementById('trophy-list');
+			if (trophyList) {
+				trophyList.innerHTML = ''; // Vide le contenu HTML de la liste des trophées
+			}
             localStorage.clear();
             updateCounterDisplay();
             updateCPSDisplay();
             updateBuildingPrices();
             updateUpgradeInfo();
+			
+			        location.reload();
         });
 
         updateCounterDisplay();
