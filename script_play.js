@@ -196,25 +196,55 @@ function updateButtonStates() {
 
 
 		// Appeler cette fonction après chaque mise à jour
+// Fonction pour formater les nombres avec des espaces tous les 3 chiffres
+		function formatNumber(number) {
+			return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+		}
+
 		function updateCounterDisplay() {
-			counterDisplay.textContent = counter.toFixed(0);
+			// Affichage du compteur formaté avec des espaces tous les 3 chiffres
+			counterDisplay.textContent = formatNumber(counter.toFixed(0));
 			updateUpgradeInfo();
 			updateButtonStates(); // Ajouter cet appel ici
 		}
 
+
+		function formatNumber(number) {
+			return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+		}
+
 		function updateBuildingPrices() {
-			// Mettre à jour les textes des prix
-			document.getElementById('b1').textContent = `${buildingPrices['cadran-solaire']} points = Cadran solaire (+0.1/s) [x${buildings['cadran-solaire']}]`;
-			// Répéter pour les autres bâtiments...
-			
-			updateButtonStates(); // Ajouter cet appel ici aussi
+			// Mettre à jour les textes des prix pour chaque bâtiment avec un format lisible
+			document.getElementById('b1').textContent = `${formatNumber(buildingPrices['cadran-solaire'])} points = Cadran solaire (+0.1/s) [x${buildings['cadran-solaire']}]`;
+			document.getElementById('b2').textContent = `${formatNumber(buildingPrices['sablier'])} points = Sablier (+1/s) [x${buildings['sablier']}]`;
+			document.getElementById('b3').textContent = `${formatNumber(buildingPrices['horloge-a-coucou'])} points = Horloge à coucou (+8/s) [x${buildings['horloge-a-coucou']}]`;
+			document.getElementById('b4').textContent = `${formatNumber(buildingPrices['montre-de-poche'])} points = Montre de poche (+47/s) [x${buildings['montre-de-poche']}]`;
+			document.getElementById('b5').textContent = `${formatNumber(buildingPrices['calendrier-perpetuel'])} points = Calendrier perpétuel (+260/s) [x${buildings['calendrier-perpetuel']}]`;
+			document.getElementById('b6').textContent = `${formatNumber(buildingPrices['reveil'])} points = Réveil (+1400/s) [x${buildings['reveil']}]`;
+			document.getElementById('b7').textContent = `${formatNumber(buildingPrices['tourdelhorloge'])} points = Tour de l'horloge (+7800/s) [x${buildings['tourdelhorloge']}]`;
+			document.getElementById('b8').textContent = `${formatNumber(buildingPrices['temple-du-temps'])} points = Machine à remonter le temps (+40000/s) [x${buildings['temple-du-temps']}]`;
+			document.getElementById('b9').textContent = `${formatNumber(buildingPrices['chronometre-universel'])} points = Chronomètre universel (+260000/s) [x${buildings['chronometre-universel']}]`;
+			document.getElementById('b10').textContent = `${formatNumber(buildingPrices['machine-a-remonter-le-temps'])} points = Temple du temps (+1600000/s) [x${buildings['machine-a-remonter-le-temps']}]`;
+			document.getElementById('b11').textContent = `${formatNumber(buildingPrices['spirale-temporelle'])} points = Spirale temporelle (+10000000/s) [x${buildings['spirale-temporelle']}]`;
+			document.getElementById('b12').textContent = `${formatNumber(buildingPrices['station-temporelle'])} points = Station temporelle (+65000000/s) [x${buildings['station-temporelle']}]`;
+			document.getElementById('b13').textContent = `${formatNumber(buildingPrices['astrolabe-mystique'])} points = Astrolabe mystique (+430000000/s) [x${buildings['astrolabe-mystique']}]`;
+			document.getElementById('b14').textContent = `${formatNumber(buildingPrices['cristal-du-temps'])} points = Cristal du temps (+2900000000/s) [x${buildings['cristal-du-temps']}]`;
+			document.getElementById('b15').textContent = `${formatNumber(buildingPrices['observatoire-temporel'])} points = Observatoire temporel (+21000000000/s) [x${buildings['observatoire-temporel']}]`;
+
+			// Mettre à jour l'état des boutons après la modification des textes
+			updateButtonStates();
 		}
 
 
-        function updateCPSDisplay() {
-            let cps = (buildings['cadran-solaire'] * 0.1) + (buildings['sablier'] * 1) + (buildings['horloge-a-coucou'] * 8) + (buildings['montre-de-poche'] * 47) + (buildings['calendrier-perpetuel'] * 260) + (buildings['reveil'] * 1400) + (buildings['tourdelhorloge'] * 7800) + (buildings['temple-du-temps'] * 40000) + (buildings['chronometre-universel'] * 260000) + (buildings['machine-a-remonter-le-temps'] * 1600000) + (buildings['spirale-temporelle'] * 10000000) + (buildings['station-temporelle'] * 65000000) + (buildings['astrolabe-mystique'] * 430000000) + (buildings['cristal-du-temps'] * 2900000000) + (buildings['observatoire-temporel'] * 21000000000);
-            cpsDisplay.textContent = `Points par seconde : ${cps.toFixed(1)}`;
-        }
+		function formatNumber(number) {
+			return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+		}
+
+		function updateCPSDisplay() {
+			let cps = (buildings['cadran-solaire'] * 0.1) + (buildings['sablier'] * 1) + (buildings['horloge-a-coucou'] * 8) + (buildings['montre-de-poche'] * 47) + (buildings['calendrier-perpetuel'] * 260) + (buildings['reveil'] * 1400) + (buildings['tourdelhorloge'] * 7800) + (buildings['temple-du-temps'] * 40000) + (buildings['chronometre-universel'] * 260000) + (buildings['machine-a-remonter-le-temps'] * 1600000) + (buildings['spirale-temporelle'] * 10000000) + (buildings['station-temporelle'] * 65000000) + (buildings['astrolabe-mystique'] * 430000000) + (buildings['cristal-du-temps'] * 2900000000) + (buildings['observatoire-temporel'] * 21000000000);
+
+			cpsDisplay.textContent = `Points par seconde : ${formatNumber(cps.toFixed(1))}`;
+		}
 
         function applyCPS() {
             let cps = (buildings['cadran-solaire'] * 0.1) + (buildings['sablier'] * 1) + (buildings['horloge-a-coucou'] * 8) + (buildings['montre-de-poche'] * 47) + (buildings['calendrier-perpetuel'] * 260) + (buildings['reveil'] * 1400) + (buildings['tourdelhorloge'] * 7800) + (buildings['temple-du-temps'] * 40000) + (buildings['chronometre-universel'] * 260000) + (buildings['machine-a-remonter-le-temps'] * 1600000) + (buildings['spirale-temporelle'] * 10000000) + (buildings['station-temporelle'] * 65000000) + (buildings['astrolabe-mystique'] * 430000000) + (buildings['cristal-du-temps'] * 2900000000) + (buildings['observatoire-temporel'] * 21000000000);
@@ -314,25 +344,6 @@ function updateButtonStates() {
 				alert("Vous n'avez pas assez de points !");
 			}
 		}
-
-
-        function updateBuildingPrices() {
-        document.getElementById('b1').textContent = `${buildingPrices['cadran-solaire']} points = Cadran solaire (+0.1/s) [x${buildings['cadran-solaire']}]`;
-        document.getElementById('b2').textContent = `${buildingPrices['sablier']} points = Sablier (+1/s) [x${buildings['sablier']}]`;
-        document.getElementById('b3').textContent = `${buildingPrices['horloge-a-coucou']} points = Horloge à coucou (+8/s) [x${buildings['horloge-a-coucou']}]`;
-        document.getElementById('b4').textContent = `${buildingPrices['montre-de-poche']} points = Montre de poche (+47/s) [x${buildings['montre-de-poche']}]`;
-        document.getElementById('b5').textContent = `${buildingPrices['calendrier-perpetuel']} points = Calendrier perpétuel (+260/s) [x${buildings['calendrier-perpetuel']}]`;
-        document.getElementById('b6').textContent = `${buildingPrices['reveil']} points = Réveil (+1400/s) [x${buildings['reveil']}]`;
-        document.getElementById('b7').textContent = `${buildingPrices['tourdelhorloge']} points = Tour de l'horloge (+7800/s) [x${buildings['tourdelhorloge']}]`;
-        document.getElementById('b8').textContent = `${buildingPrices['temple-du-temps']} points = Machine à remonter le temps (+40000/s) [x${buildings['temple-du-temps']}]`;
-        document.getElementById('b9').textContent = `${buildingPrices['chronometre-universel']} points = Chronomètre universel (+260000/s) [x${buildings['chronometre-universel']}]`;
-        document.getElementById('b10').textContent = `${buildingPrices['machine-a-remonter-le-temps']} points = Temple du temps (+1600000/s) [x${buildings['machine-a-remonter-le-temps']}]`;
-        document.getElementById('b11').textContent = `${buildingPrices['spirale-temporelle']} points = Spirale temporelle (+10000000/s) [x${buildings['spirale-temporelle']}]`;
-        document.getElementById('b12').textContent = `${buildingPrices['station-temporelle']} points = Station temporelle (+65000000/s) [x${buildings['station-temporelle']}]`;
-        document.getElementById('b13').textContent = `${buildingPrices['astrolabe-mystique']} points = Astrolabe mystique (+430000000/s) [x${buildings['astrolabe-mystique']}]`;
-        document.getElementById('b14').textContent = `${buildingPrices['cristal-du-temps']} points = Cristal du temps (+2900000000/s) [x${buildings['cristal-du-temps']}]`;
-        document.getElementById('b15').textContent = `${buildingPrices['observatoire-temporel']} points = Observatoire temporel (+21000000000/s) [x${buildings['observatoire-temporel']}]`;
-        }
 
 
         document.getElementById('b1').addEventListener('click', () => {
@@ -499,16 +510,20 @@ function updateButtonStates() {
 
 
 
-        function updateUpgradeInfo() {
-            if (currentUpgradeIndex < upgrades.length) {
-                const upgrade = upgrades[currentUpgradeIndex];
-                upgradeDescription.textContent = `Prochaine amélioration : ${upgrade.name} (${upgrade.cost} points)`;
-                buyUpgradeButton.disabled = counter < upgrade.cost;
-            } else {
-                upgradeDescription.textContent = "Toutes les améliorations ont été achetées.";
-                buyUpgradeButton.disabled = true;
-            }
-        }
+		function formatNumber(number) {
+			return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+		}
+
+		function updateUpgradeInfo() {
+			if (currentUpgradeIndex < upgrades.length) {
+				const upgrade = upgrades[currentUpgradeIndex];
+				upgradeDescription.textContent = `Prochaine amélioration : ${upgrade.name} (${formatNumber(upgrade.cost)} points)`;
+				buyUpgradeButton.disabled = counter < upgrade.cost;
+			} else {
+				upgradeDescription.textContent = "Toutes les améliorations ont été achetées.";
+				buyUpgradeButton.disabled = true;
+			}
+		}
 
 
 
