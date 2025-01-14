@@ -514,6 +514,7 @@ function updateButtonStates() {
 
 
         document.getElementById('reset').addEventListener('click', () => {
+		if(confirm("Étes-vous sûr de vouloir rénitialiser votre partie ?"))
             counter = 0;
             clickValue = 1;
             currentUpgradeIndex = 0;
