@@ -243,7 +243,10 @@ function updateButtonStates() {
 		function updateCPSDisplay() {
 			let cps = (buildings['cadran-solaire'] * 0.1) + (buildings['sablier'] * 1) + (buildings['horloge-a-coucou'] * 8) + (buildings['montre-de-poche'] * 47) + (buildings['calendrier-perpetuel'] * 260) + (buildings['reveil'] * 1400) + (buildings['tourdelhorloge'] * 7800) + (buildings['temple-du-temps'] * 40000) + (buildings['chronometre-universel'] * 260000) + (buildings['machine-a-remonter-le-temps'] * 1600000) + (buildings['spirale-temporelle'] * 10000000) + (buildings['station-temporelle'] * 65000000) + (buildings['astrolabe-mystique'] * 430000000) + (buildings['cristal-du-temps'] * 2900000000) + (buildings['observatoire-temporel'] * 21000000000);
 
-			cpsDisplay.textContent = `Points par seconde : ${formatNumber(cps.toFixed(1))}`;
+			cpsDisplay.innerHTML = `
+				<span>Points par seconde :</span><br>
+				<span>${formatNumber(cps.toFixed(1))}</span>
+			`;
 		}
 
         function applyCPS() {
