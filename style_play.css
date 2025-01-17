@@ -230,8 +230,10 @@ footer {
     width: 400px;
     box-shadow: 0px 3.2px 6.4px rgba(0, 0, 0, 0.5);
     z-index: 10;
-	max-height:500px;
-	overflow: auto;
+    max-height:500px;
+    overflow: auto;
+    scrollbar-color: #b4c8ff #dce5ff;
+
 }
 
 .trophy {
