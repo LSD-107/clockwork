@@ -474,7 +474,7 @@ function showCustomAlert(message) {
 	alertBox.style.fontSize = '40px';
 	alertBox.style.borderRadius = '10px';
 	alertBox.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-	alertBox.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+	alertBox.style.transition = 'opacity 4s ease-in-out, transform 4s ease-in-out';
 	alertBox.style.transform = 'translateX(-50%) translateY(40px)';
 
 document.body.appendChild(alertBox);
