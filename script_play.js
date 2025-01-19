@@ -1,16 +1,16 @@
 window.onload = () => {
-	updateCounterDisplay();
-	updateButtonStates();
+    updateCounterDisplay();
+    updateButtonStates();
 };
 
 const audio = new Audio("musiques/index.mp3");
-    audio.loop = true;
-	audio.volume = 0.5;
+audio.loop = true;
+audio.volume = 0.5;
 
 document.addEventListener("click", () => {
     audio.play().catch(err => {
-    console.error("La lecture de la musique a échoué : ", err);
-});
+        console.error("La lecture de la musique a échoué : ", err);
+    });
 }, { once: true });
 
 const canvas = document.getElementById('particlesCanvas');
@@ -33,31 +33,31 @@ const numberOfParticles = 300;
 
 class Particle {
     constructor(x, y, size, speedX, speedY) {
-    this.x = x;
-    this.y = y;
-    this.size = size;
-    this.speedX = speedX;
-    this.speedY = speedY;
-}
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
+    }
 
-draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,250, 250, 0.6)'; 
-    ctx.fill();
-}
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,250, 250, 0.6)';
+        ctx.fill();
+    }
 
-update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
 
-if (this.x < 0 || this.x > canvas.width) {
-    this.speedX *= -1;
-}
-if (this.y < 0 || this.y > canvas.height) {
-    this.speedY *= -1;
-}
-}
+        if (this.x < 0 || this.x > canvas.width) {
+            this.speedX *= -1;
+        }
+        if (this.y < 0 || this.y > canvas.height) {
+            this.speedY *= -1;
+        }
+    }
 }
 
 function initParticles() {
@@ -65,7 +65,7 @@ function initParticles() {
         const size = Math.random() * 5 + 1;
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
-        const speedX = (Math.random() - 0.5) * 1.5; 
+        const speedX = (Math.random() - 0.5) * 1.5;
         const speedY = (Math.random() - 0.5) * 1.5;
         particlesArray.push(new Particle(x, y, size, speedX, speedY));
     }
@@ -77,9 +77,9 @@ function animateParticles() {
     particlesArray.forEach(particle => {
         particle.update();
         particle.draw();
-});
+    });
 
-	requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animateParticles);
 }
 
 initParticles();
@@ -115,7 +115,7 @@ let buildings = JSON.parse(localStorage.getItem('buildings')) || {
 let buildingPrices = JSON.parse(localStorage.getItem('buildingPrices')) || {
     'cadran-solaire': 15,
     'sablier': 100,
-    'horloge-a-coucou' : 1100,
+    'horloge-a-coucou': 1100,
     'montre-de-poche': 12000,
     'calendrier-perpetuel': 130000,
     'reveil': 1400000,
@@ -156,25 +156,25 @@ function updateCounterDisplay() {
 }
 
 compteurButton.addEventListener('click', () => {
-	counter += clickValue;
-	updateCounterDisplay();
-	checkForTrophies();  
-	localStorage.setItem('clickCount', counter);
+    counter += clickValue;
+    updateCounterDisplay();
+    checkForTrophies();
+    localStorage.setItem('clickCount', counter);
 });
 
 compteurButton.addEventListener('click', () => {
-compteurButton.classList.add('active');
-		
-setTimeout(() => {
-	compteurButton.classList.remove('active');
-}, 100);
+    compteurButton.classList.add('active');
+
+    setTimeout(() => {
+        compteurButton.classList.remove('active');
+    }, 100);
 });
-		
-		
+
+
 function updateButtonStates() {
-    const buttons = document.querySelectorAll('.shop .building button'); 
+    const buttons = document.querySelectorAll('.shop .building button');
     buttons.forEach(button => {
-        const buildingId = button.id.replace('b', ''); 
+        const buildingId = button.id.replace('b', '');
         const cost = buildingPrices[Object.keys(buildingPrices)[buildingId - 1]];
 
         if (counter >= cost) {
@@ -193,46 +193,46 @@ function updateButtonStates() {
 
 
 function formatNumber(number) {
-	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 function updateCounterDisplay() {
-	counterDisplay.textContent = formatNumber(counter.toFixed(0));
-	updateUpgradeInfo();
-	updateButtonStates(); // Ajouter cet appel ici
+    counterDisplay.textContent = formatNumber(counter.toFixed(0));
+    updateUpgradeInfo();
+    updateButtonStates(); // Ajouter cet appel ici
 }
 
 
 function formatNumber(number) {
-	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 function updateBuildingPrices() {
-	document.getElementById('b1').textContent = `${formatNumber(buildingPrices['cadran-solaire'])} points = Cadran solaire (+0.1/s) [x${buildings['cadran-solaire']}]`;
-	document.getElementById('b2').textContent = `${formatNumber(buildingPrices['sablier'])} points = Sablier (+1/s) [x${buildings['sablier']}]`;
-	document.getElementById('b3').textContent = `${formatNumber(buildingPrices['horloge-a-coucou'])} points = Horloge à coucou (+8/s) [x${buildings['horloge-a-coucou']}]`;
-	document.getElementById('b4').textContent = `${formatNumber(buildingPrices['montre-de-poche'])} points = Montre de poche (+47/s) [x${buildings['montre-de-poche']}]`;
-	document.getElementById('b5').textContent = `${formatNumber(buildingPrices['calendrier-perpetuel'])} points = Calendrier perpétuel (+260/s) [x${buildings['calendrier-perpetuel']}]`;
-	document.getElementById('b6').textContent = `${formatNumber(buildingPrices['reveil'])} points = Réveil (+1400/s) [x${buildings['reveil']}]`;
-	document.getElementById('b7').textContent = `${formatNumber(buildingPrices['tourdelhorloge'])} points = Tour de l'horloge (+7800/s) [x${buildings['tourdelhorloge']}]`;
-	document.getElementById('b8').textContent = `${formatNumber(buildingPrices['temple-du-temps'])} points = Machine à remonter le temps (+40000/s) [x${buildings['temple-du-temps']}]`;
-	document.getElementById('b9').textContent = `${formatNumber(buildingPrices['chronometre-universel'])} points = Chronomètre universel (+260000/s) [x${buildings['chronometre-universel']}]`;
-	document.getElementById('b10').textContent = `${formatNumber(buildingPrices['machine-a-remonter-le-temps'])} points = Temple du temps (+1600000/s) [x${buildings['machine-a-remonter-le-temps']}]`;
-	document.getElementById('b11').textContent = `${formatNumber(buildingPrices['spirale-temporelle'])} points = Spirale temporelle (+10000000/s) [x${buildings['spirale-temporelle']}]`;
-	document.getElementById('b12').textContent = `${formatNumber(buildingPrices['station-temporelle'])} points = Station temporelle (+65000000/s) [x${buildings['station-temporelle']}]`;
-	document.getElementById('b13').textContent = `${formatNumber(buildingPrices['astrolabe-mystique'])} points = Astrolabe mystique (+430000000/s) [x${buildings['astrolabe-mystique']}]`;
-	document.getElementById('b14').textContent = `${formatNumber(buildingPrices['cristal-du-temps'])} points = Cristal du temps (+2900000000/s) [x${buildings['cristal-du-temps']}]`;
-	document.getElementById('b15').textContent = `${formatNumber(buildingPrices['observatoire-temporel'])} points = Observatoire temporel (+21000000000/s) [x${buildings['observatoire-temporel']}]`;
+    document.getElementById('b1').textContent = `${formatNumber(buildingPrices['cadran-solaire'])} points = Cadran solaire (+0.1/s) [x${buildings['cadran-solaire']}]`;
+    document.getElementById('b2').textContent = `${formatNumber(buildingPrices['sablier'])} points = Sablier (+1/s) [x${buildings['sablier']}]`;
+    document.getElementById('b3').textContent = `${formatNumber(buildingPrices['horloge-a-coucou'])} points = Horloge à coucou (+8/s) [x${buildings['horloge-a-coucou']}]`;
+    document.getElementById('b4').textContent = `${formatNumber(buildingPrices['montre-de-poche'])} points = Montre de poche (+47/s) [x${buildings['montre-de-poche']}]`;
+    document.getElementById('b5').textContent = `${formatNumber(buildingPrices['calendrier-perpetuel'])} points = Calendrier perpétuel (+260/s) [x${buildings['calendrier-perpetuel']}]`;
+    document.getElementById('b6').textContent = `${formatNumber(buildingPrices['reveil'])} points = Réveil (+1400/s) [x${buildings['reveil']}]`;
+    document.getElementById('b7').textContent = `${formatNumber(buildingPrices['tourdelhorloge'])} points = Tour de l'horloge (+7800/s) [x${buildings['tourdelhorloge']}]`;
+    document.getElementById('b8').textContent = `${formatNumber(buildingPrices['temple-du-temps'])} points = Machine à remonter le temps (+40000/s) [x${buildings['temple-du-temps']}]`;
+    document.getElementById('b9').textContent = `${formatNumber(buildingPrices['chronometre-universel'])} points = Chronomètre universel (+260000/s) [x${buildings['chronometre-universel']}]`;
+    document.getElementById('b10').textContent = `${formatNumber(buildingPrices['machine-a-remonter-le-temps'])} points = Temple du temps (+1600000/s) [x${buildings['machine-a-remonter-le-temps']}]`;
+    document.getElementById('b11').textContent = `${formatNumber(buildingPrices['spirale-temporelle'])} points = Spirale temporelle (+10000000/s) [x${buildings['spirale-temporelle']}]`;
+    document.getElementById('b12').textContent = `${formatNumber(buildingPrices['station-temporelle'])} points = Station temporelle (+65000000/s) [x${buildings['station-temporelle']}]`;
+    document.getElementById('b13').textContent = `${formatNumber(buildingPrices['astrolabe-mystique'])} points = Astrolabe mystique (+430000000/s) [x${buildings['astrolabe-mystique']}]`;
+    document.getElementById('b14').textContent = `${formatNumber(buildingPrices['cristal-du-temps'])} points = Cristal du temps (+2900000000/s) [x${buildings['cristal-du-temps']}]`;
+    document.getElementById('b15').textContent = `${formatNumber(buildingPrices['observatoire-temporel'])} points = Observatoire temporel (+21000000000/s) [x${buildings['observatoire-temporel']}]`;
 
-	updateButtonStates();
+    updateButtonStates();
 }
 
 function formatNumber(number) {
-	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 function updateCPSDisplay() {
-	let cps = (buildings['cadran-solaire'] * 0.1) + (buildings['sablier'] * 1) + (buildings['horloge-a-coucou'] * 8) + (buildings['montre-de-poche'] * 47) + (buildings['calendrier-perpetuel'] * 260) + (buildings['reveil'] * 1400) + (buildings['tourdelhorloge'] * 7800) + (buildings['temple-du-temps'] * 40000) + (buildings['chronometre-universel'] * 260000) + (buildings['machine-a-remonter-le-temps'] * 1600000) + (buildings['spirale-temporelle'] * 10000000) + (buildings['station-temporelle'] * 65000000) + (buildings['astrolabe-mystique'] * 430000000) + (buildings['cristal-du-temps'] * 2900000000) + (buildings['observatoire-temporel'] * 21000000000);
-	cpsDisplay.innerHTML = `
+    let cps = (buildings['cadran-solaire'] * 0.1) + (buildings['sablier'] * 1) + (buildings['horloge-a-coucou'] * 8) + (buildings['montre-de-poche'] * 47) + (buildings['calendrier-perpetuel'] * 260) + (buildings['reveil'] * 1400) + (buildings['tourdelhorloge'] * 7800) + (buildings['temple-du-temps'] * 40000) + (buildings['chronometre-universel'] * 260000) + (buildings['machine-a-remonter-le-temps'] * 1600000) + (buildings['spirale-temporelle'] * 10000000) + (buildings['station-temporelle'] * 65000000) + (buildings['astrolabe-mystique'] * 430000000) + (buildings['cristal-du-temps'] * 2900000000) + (buildings['observatoire-temporel'] * 21000000000);
+    cpsDisplay.innerHTML = `
 		<span>Points par seconde :</span><br>
 		<span>${formatNumber(cps.toFixed(1))}</span>
 	`;
@@ -246,9 +246,9 @@ function applyCPS() {
 }
 
 setInterval(() => {
-	localStorage.setItem('clickCount', counter);
-	localStorage.setItem('buildings', JSON.stringify(buildings));
-	localStorage.setItem('trophies', JSON.stringify(trophies));
+    localStorage.setItem('clickCount', counter);
+    localStorage.setItem('buildings', JSON.stringify(buildings));
+    localStorage.setItem('trophies', JSON.stringify(trophies));
 }, 5000);
 
 
@@ -259,7 +259,7 @@ const clickThresholds = [10, 50, 100, 1000, 10000, 100000, 1000000];
 const buildingThresholds = [1, 10, 50, 100, 500, 1000, 10000, 100000, 1000000];
 
 setInterval(() => {
-	localStorage.setItem('trophies', JSON.stringify(trophies));
+    localStorage.setItem('trophies', JSON.stringify(trophies));
 }, 5000);
 
 function displayTrophies() {
@@ -289,52 +289,52 @@ function checkForTrophies() {
         }
     });
 
-Object.keys(buildings).forEach(building => {
-    buildingThresholds.forEach(threshold => {
-        const trophyName = `${threshold}x ${getBuildingName(building)}`;
-			if (buildings[building] >= threshold && !trophies.includes(trophyName)) {
-				addTrophy(trophyName);
+    Object.keys(buildings).forEach(building => {
+        buildingThresholds.forEach(threshold => {
+            const trophyName = `${threshold}x ${getBuildingName(building)}`;
+            if (buildings[building] >= threshold && !trophies.includes(trophyName)) {
+                addTrophy(trophyName);
             }
-		});
+        });
     });
 }
 
 function getBuildingName(buildingId) {
-	const buildingNames = {
-		'cadran-solaire': 'Cadran Solaire',
-		'sablier': 'Sablier',
-		'horloge-a-coucou': 'Horloge à Coucou',
-		'montre-de-poche': 'Montre de Poche',
-		'calendrier-perpetuel': 'Calendrier Perpétuel',
-		'reveil': 'Réveil',
-		'tourdelhorloge': 'Tour de l’Horloge',
-		'temple-du-temps': 'Machine à Remonter le Temps',
-		'chronometre-universel': 'Chronomètre Universel',
-		'machine-a-remonter-le-temps': 'Temple du Temps',
-		'spirale-temporelle': 'Spirale Temporelle',
-		'station-temporelle': 'Station Temporelle',
-		'astrolabe-mystique': 'Astrolabe Mystique',
-		'cristal-du-temps': 'Cristal du Temps',
-		'observatoire-temporel': 'Observatoire Temporel'
-	};
-return buildingNames[buildingId] || buildingId;
+    const buildingNames = {
+        'cadran-solaire': 'Cadran Solaire',
+        'sablier': 'Sablier',
+        'horloge-a-coucou': 'Horloge à Coucou',
+        'montre-de-poche': 'Montre de Poche',
+        'calendrier-perpetuel': 'Calendrier Perpétuel',
+        'reveil': 'Réveil',
+        'tourdelhorloge': 'Tour de l’Horloge',
+        'temple-du-temps': 'Machine à Remonter le Temps',
+        'chronometre-universel': 'Chronomètre Universel',
+        'machine-a-remonter-le-temps': 'Temple du Temps',
+        'spirale-temporelle': 'Spirale Temporelle',
+        'station-temporelle': 'Station Temporelle',
+        'astrolabe-mystique': 'Astrolabe Mystique',
+        'cristal-du-temps': 'Cristal du Temps',
+        'observatoire-temporel': 'Observatoire Temporel'
+    };
+    return buildingNames[buildingId] || buildingId;
 }
 
 function buyBuilding(buildingId, cost, increment) {
-	if (counter >= cost) {
-		counter -= cost;
-		buildings[buildingId]++;
-		buildingPrices[buildingId] = Math.ceil(buildingPrices[buildingId] * 1.15);
-		updateCounterDisplay();
-		updateCPSDisplay();
-		updateBuildingPrices();
-		checkForTrophies();  
-		localStorage.setItem('clickCount', counter);
-		localStorage.setItem('buildings', JSON.stringify(buildings));
-		localStorage.setItem('buildingPrices', JSON.stringify(buildingPrices));
-	} else {
-		alert("Vous n'avez pas assez de points !");
-	}
+    if (counter >= cost) {
+        counter -= cost;
+        buildings[buildingId]++;
+        buildingPrices[buildingId] = Math.ceil(buildingPrices[buildingId] * 1.15);
+        updateCounterDisplay();
+        updateCPSDisplay();
+        updateBuildingPrices();
+        checkForTrophies();
+        localStorage.setItem('clickCount', counter);
+        localStorage.setItem('buildings', JSON.stringify(buildings));
+        localStorage.setItem('buildingPrices', JSON.stringify(buildingPrices));
+    } else {
+        alert("Vous n'avez pas assez de points !");
+    }
 }
 
 document.getElementById('b1').addEventListener('click', () => {
@@ -344,7 +344,7 @@ document.getElementById('b1').addEventListener('click', () => {
 document.getElementById('b2').addEventListener('click', () => {
     buyBuilding('sablier', buildingPrices['sablier'], 1);
 });
-    
+
 document.getElementById('b3').addEventListener('click', () => {
     buyBuilding('horloge-a-coucou', buildingPrices['horloge-a-coucou'], 8);
 });
@@ -365,7 +365,7 @@ document.getElementById('b7').addEventListener('click', () => {
     buyBuilding('tourdelhorloge', buildingPrices['tourdelhorloge'], 7800);
 });
 
- document.getElementById('b8').addEventListener('click', () => {
+document.getElementById('b8').addEventListener('click', () => {
     buyBuilding('temple-du-temps', buildingPrices['temple-du-temps'], 40000);
 });
 
@@ -406,113 +406,113 @@ buyUpgradeButton.addEventListener('click', () => {
         localStorage.setItem('clickValue', clickValue);
         localStorage.setItem('currentUpgradeIndex', currentUpgradeIndex);
         updateCounterDisplay();
-    } 
-	else {
+    }
+    else {
         alert("Vous n'avez pas assez de points !");
     }
 });
 
-let buttonVisible = false; 
+let buttonVisible = false;
 
 function createRandomButton() {
-	if (buttonVisible) {
-		return; 
-	}
+    if (buttonVisible) {
+        return;
+    }
 
-const button = document.createElement('img');
-button.src = 'images/button.png'; 
-button.style.width = '100px'; 
-button.style.height = '100px'; 
-button.style.position = 'absolute';
-button.style.cursor = 'pointer';        
-		
-const x = Math.random() * window.innerWidth - 100;
-const y = Math.random() * window.innerHeight - 100;
-button.style.left = `${Math.max(0, x)}px`;
-button.style.top = `${Math.max(0, y)}px`;
+    const button = document.createElement('img');
+    button.src = 'images/button.png';
+    button.style.width = '100px';
+    button.style.height = '100px';
+    button.style.position = 'absolute';
+    button.style.cursor = 'pointer';
 
-buttonVisible = true;
-	button.addEventListener('click', () => {
-	const addition = Math.random() < 0.5 ? 0.4 : 0.6; 
-	const additionValue = Math.floor(counter * addition); 
-	counter += additionValue; 
-	updateCounterDisplay(); 
-		showCustomAlert(`+${additionValue} points`);
-		localStorage.setItem('clickCount', counter); 
-		document.body.removeChild(button);
-	buttonVisible = false; 
-});
+    const x = Math.random() * window.innerWidth - 100;
+    const y = Math.random() * window.innerHeight - 100;
+    button.style.left = `${Math.max(0, x)}px`;
+    button.style.top = `${Math.max(0, y)}px`;
 
-document.body.appendChild(button);
+    buttonVisible = true;
+    button.addEventListener('click', () => {
+        const addition = Math.random() < 0.5 ? 0.4 : 0.6;
+        const additionValue = Math.floor(counter * addition);
+        counter += additionValue;
+        updateCounterDisplay();
+        showCustomAlert(`+${additionValue} points`);
+        localStorage.setItem('clickCount', counter);
+        document.body.removeChild(button);
+        buttonVisible = false;
+    });
 
-setTimeout(() => {
-	if (document.body.contains(button)) {
-		document.body.removeChild(button);
-		buttonVisible = false; 
-	}
-}, 25000); // 25 seconde
+    document.body.appendChild(button);
+
+    setTimeout(() => {
+        if (document.body.contains(button)) {
+            document.body.removeChild(button);
+            buttonVisible = false;
+        }
+    }, 25000); // 25 seconde
 }
 
-function randomButtonGenerator(){ 
-	const randomTime = Math.random() *  600000; //10 minutes
-	setTimeout(() => {
-		createRandomButton();  
-		randomButtonGenerator(); 
-	}, randomTime); 
+function randomButtonGenerator() {
+    const randomTime = Math.random() * 600000; //10 minutes
+    setTimeout(() => {
+        createRandomButton();
+        randomButtonGenerator();
+    }, randomTime);
 }
 
 function showCustomAlert(message) {
-	const alertBox = document.createElement('div');
-	alertBox.innerText = message;
-	alertBox.style.position = 'fixed';
-	alertBox.style.top = '10%';
-	alertBox.style.left = '50%';
-	alertBox.style.transform = 'translateX(-50%)';
-	alertBox.style.padding = '10px 30px';
-	alertBox.style.backgroundColor = '#4CAF50';
-	alertBox.style.color = 'white';
-	alertBox.style.fontSize = '40px';
-	alertBox.style.borderRadius = '10px';
-	alertBox.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-	alertBox.style.transition = 'opacity 4s ease-in-out, transform 4s ease-in-out';
-	alertBox.style.transform = 'translateX(-50%) translateY(40px)';
+    const alertBox = document.createElement('div');
+    alertBox.innerText = message;
+    alertBox.style.position = 'fixed';
+    alertBox.style.top = '10%';
+    alertBox.style.left = '50%';
+    alertBox.style.transform = 'translateX(-50%)';
+    alertBox.style.padding = '10px 30px';
+    alertBox.style.backgroundColor = '#4CAF50';
+    alertBox.style.color = 'white';
+    alertBox.style.fontSize = '40px';
+    alertBox.style.borderRadius = '10px';
+    alertBox.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+    alertBox.style.transition = 'opacity 4s ease-in-out, transform 4s ease-in-out';
+    alertBox.style.transform = 'translateX(-50%) translateY(40px)';
 
-document.body.appendChild(alertBox);
+    document.body.appendChild(alertBox);
 
-setTimeout(() => {
-	alertBox.style.opacity = '1';
-	alertBox.style.transform = 'translateX(-50%) translateY(0)';
-}, 10);
+    setTimeout(() => {
+        alertBox.style.opacity = '1';
+        alertBox.style.transform = 'translateX(-50%) translateY(0)';
+    }, 10);
 
-setTimeout(() => {
-	alertBox.style.opacity = '0';
-	alertBox.style.transform = 'translateX(-50%) translateY(20px)';
-	setTimeout(() => {
-		document.body.removeChild(alertBox);
-	}, 500);
-}, 3000);
+    setTimeout(() => {
+        alertBox.style.opacity = '0';
+        alertBox.style.transform = 'translateX(-50%) translateY(20px)';
+        setTimeout(() => {
+            document.body.removeChild(alertBox);
+        }, 500);
+    }, 3000);
 }
 
 randomButtonGenerator();
 
 function formatNumber(number) {
-	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 function updateUpgradeInfo() {
-	if (currentUpgradeIndex < upgrades.length) {
-		const upgrade = upgrades[currentUpgradeIndex];
-		upgradeDescription.textContent = `Prochaine amélioration : ${upgrade.name} (${formatNumber(upgrade.cost)} points)`;
-		buyUpgradeButton.disabled = counter < upgrade.cost;
-	} else {
-		upgradeDescription.textContent = "Toutes les améliorations ont été achetées.";
-		buyUpgradeButton.disabled = true;
-	}
+    if (currentUpgradeIndex < upgrades.length) {
+        const upgrade = upgrades[currentUpgradeIndex];
+        upgradeDescription.innerHTML = `Prochaine amélioration : <br>${upgrade.name} (${formatNumber(upgrade.cost)} points)`;
+        buyUpgradeButton.disabled = counter < upgrade.cost;
+    } else {
+        upgradeDescription.textContent = "Toutes les améliorations ont été achetées.";
+        buyUpgradeButton.disabled = true;
+    }
 }
 
 document.getElementById('reset').addEventListener('click', () => {
-if(confirm("Êtes-vous sûr de vouloir rénitialiser votre partie ?"))
-    counter = 0;
+    if (confirm("Êtes-vous sûr de vouloir rénitialiser votre partie ?"))
+        counter = 0;
     clickValue = 1;
     currentUpgradeIndex = 0;
     buildings = {
@@ -533,37 +533,37 @@ if(confirm("Êtes-vous sûr de vouloir rénitialiser votre partie ?"))
         'observatoire-temporel': 0
     };
 
-buildingPrices = {
-    'cadran-solaire': 15,
-    'sablier': 100,
-    'horloge-a-coucou': 1100,
-    'montre-de-poche': 12000,
-    'calendrier-perpetuel': 130000,
-    'reveil': 1400000,
-    'tourdelhorloge': 20000000,
-    'machine-a-remonter-le-temps': 330000000,
-    'chronometre-universel': 5100000000,
-    'temple-du-temps': 75000000000,
-    'spirale-temporelle': 1000000000000,
-    'station-temporelle': 14000000000000,
-    'astrolabe-mystique': 170000000000000,
-    'cristal-du-temps': 2100000000000000,
-    'observatoire-temporel': 26000000000000000
-};
-let trophies = []; 
+    buildingPrices = {
+        'cadran-solaire': 15,
+        'sablier': 100,
+        'horloge-a-coucou': 1100,
+        'montre-de-poche': 12000,
+        'calendrier-perpetuel': 130000,
+        'reveil': 1400000,
+        'tourdelhorloge': 20000000,
+        'machine-a-remonter-le-temps': 330000000,
+        'chronometre-universel': 5100000000,
+        'temple-du-temps': 75000000000,
+        'spirale-temporelle': 1000000000000,
+        'station-temporelle': 14000000000000,
+        'astrolabe-mystique': 170000000000000,
+        'cristal-du-temps': 2100000000000000,
+        'observatoire-temporel': 26000000000000000
+    };
+    let trophies = [];
 
-const trophyList = document.getElementById('trophy-list');
-if (trophyList) {
-	trophyList.innerHTML = ''; 
-}
-localStorage.clear();
-updateCounterDisplay();
-updateCPSDisplay();
-updateBuildingPrices();
-updateUpgradeInfo();
+    const trophyList = document.getElementById('trophy-list');
+    if (trophyList) {
+        trophyList.innerHTML = '';
+    }
+    localStorage.clear();
+    updateCounterDisplay();
+    updateCPSDisplay();
+    updateBuildingPrices();
+    updateUpgradeInfo();
 
-location.reload();
-location.reload();
+    location.reload();
+    location.reload();
 });
 
 
