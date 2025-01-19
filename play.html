@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel='stylesheet' href='style_play.css'>
-	
+
     <title>Clockwork Empire ⌛</title>
 </head>
+
 <body>
+
+    <div class="bandeau">
+        <div class="texte-wrapper">
+            <div class="texte">
+                Les horloges qui apparaissent sur votre écran permettent de rapporter des points • Le bâtiment le plus cher coûte 26 billiards de points • Vous pouvez voir l'évolution du projets dans l'onglet "version" • Les horloges donnent 40% ou 60% des points que l'on possède • Il y a 10 améliorations de clics • Les horloges restent 25 secondes avant de disparaître
+            </div>
+        </div>
+    </div>
     <main>
         <div class="game">
             <a href="index.html" class="menu-button">⬅ Retour au menu</a>
             <h1>Compteur</h1>
             <div id="counter">0</div>
             <div id="cps">Points par seconde : 0.0</div>
-            <img id="compteur" src="images/horloge.png" alt="Ajouter +1"/>
+            <img id="compteur" src="images/horloge.png" alt="Ajouter +1" />
             <button id="reset">Réinitialiser</button>
         </div>
 
@@ -26,15 +36,15 @@
                 <button id="buy-upgrade" disabled>Acheter</button>
             </div>
         </div>
-		<div class="trophies">
-			<h2>Trophées</h2>
-			<ul id="trophy-list">
-			</ul>
-		</div>
+        <div class="trophies">
+            <h2>Trophées</h2>
+            <ul id="trophy-list">
+            </ul>
+        </div>
 
 
         <div class="shop">
-            <h2>Acheter un bâtiment : </h2>
+            <div class=buybuilding><h2>Acheter un bâtiment</h2></div>
             <div class="tab-content" id="tab1">
                 <div class="building">
                     <img src="images/b1.png" alt="Cadran solaire">
@@ -96,18 +106,19 @@
                     <img src="images/b15.png" alt="Observatoire temporel">
                     <button id="b15">26000000000000000 points = Observatoire temporel (+21000000000/s)</button>
                 </div>
-				
-				
+
+
             </div>
         </div>
-		
+
     </main>
 
     <footer>
         <p>Ethan Maurice-Chavot Genève Titouan Delmas Alex Gallien Simon © 2024 - Tous droits réservés.</p>
     </footer>
     <canvas id="particlesCanvas"></canvas>
-	
-	<script src="script_play.js"></script>
+
+    <script src="script_play.js"></script>
 </body>
+
 </html>
