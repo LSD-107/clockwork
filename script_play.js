@@ -5,7 +5,7 @@ window.onload = () => {
 
 const audio = new Audio("musiques/index.mp3");
 audio.loop = true;
-audio.volume = 0.5;
+audio.volume = 0.3;
 
 document.addEventListener("click", () => {
     audio.play().catch(err => {
