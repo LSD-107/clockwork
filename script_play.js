@@ -437,7 +437,7 @@ function createRandomButton() {
         const additionValue = Math.floor(counter * addition);
         counter += additionValue;
         updateCounterDisplay();
-        showCustomAlert(`+${additionValue} points`);
+        showCustomAlert(`+${formatNumber(additionValue)} points`);
         localStorage.setItem('clickCount', counter);
         document.body.removeChild(button);
         buttonVisible = false;
