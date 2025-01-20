@@ -283,7 +283,7 @@ function addTrophy(trophyName) {
 
 function checkForTrophies() {
     clickThresholds.forEach(threshold => {
-        const trophyName = `Atteint ${threshold} points`;
+        const trophyName = `Atteint ${formatNumber(threshold)} points`;
         if (counter >= threshold && !trophies.includes(trophyName)) {
             addTrophy(trophyName);
         }
