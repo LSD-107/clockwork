@@ -426,22 +426,32 @@ function createRandomButton() {
     button.style.position = 'absolute';
     button.style.cursor = 'pointer';
 
+    const goSound = new Audio('musiques/go.mp3');
+    goSound.play();
+
     const x = Math.random() * window.innerWidth - 100;
     const y = Math.random() * window.innerHeight - 100;
     button.style.left = `${Math.max(0, x)}px`;
     button.style.top = `${Math.max(0, y)}px`;
 
     buttonVisible = true;
-    button.addEventListener('click', () => {
-        const addition = Math.random() < 0.5 ? 0.4 : 0.6;
-        const additionValue = Math.floor(counter * addition);
-        counter += additionValue;
-        updateCounterDisplay();
-        showCustomAlert(`+${formatNumber(additionValue)} points`);
-        localStorage.setItem('clickCount', counter);
-        document.body.removeChild(button);
-        buttonVisible = false;
-    });
+button.addEventListener('click', () => {
+    const popSound = new Audio('musiques/pop.mp3');
+    popSound.play();
+
+    const addition = Math.random() < 0.5 ? 0.4 : 0.6;
+    const additionValue = Math.floor(counter * addition);
+    counter += additionValue;
+    updateCounterDisplay();
+    
+    showCustomAlert(`+${formatNumber(additionValue)} points`);
+    
+    localStorage.setItem('clickCount', counter);
+    
+    document.body.removeChild(button);
+    buttonVisible = false;
+});
+
 
     document.body.appendChild(button);
 
