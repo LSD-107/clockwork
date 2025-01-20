@@ -255,7 +255,7 @@ setInterval(() => {
 const trophyList = document.getElementById('trophy-list');
 displayTrophies();
 
-const clickThresholds = [10, 50, 100, 1000, 10000, 100000, 1000000];
+const clickThresholds = [10, 50, 100, 1000, 10000, 100000, 1000000, 100000000, 10000000000];
 const buildingThresholds = [1, 10, 50, 100, 500, 1000, 10000, 100000, 1000000];
 
 setInterval(() => {
