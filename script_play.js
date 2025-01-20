@@ -436,9 +436,6 @@ function createRandomButton() {
 
     buttonVisible = true;
 button.addEventListener('click', () => {
-    const popSound = new Audio('musiques/pop.mp3');
-    popSound.play();
-
     const addition = Math.random() < 0.5 ? 0.4 : 0.6;
     const additionValue = Math.floor(counter * addition);
     counter += additionValue;
