@@ -220,26 +220,36 @@ function updateCounterDisplay() {
 }
 
 
-function formatNumber(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+function formatNumberWithAbbreviation(number) {
+    if (number >= 1e15) {
+        return (number / 1e15).toFixed(1) + " Billiards";
+	} else if (number >= 1e12) {
+        return (number / 1e12).toFixed(1) + " Billions";
+	} else if (number >= 1e9) {
+        return (number / 1e9).toFixed(1) + " milliards";
+    } else if (number >= 1e6) {
+        return (number / 1e6).toFixed(1) + " millions";
+    } else {
+        return number.toString();
+    }
 }
 
 function updateBuildingPrices() {
-    document.getElementById('b1').textContent = `${formatNumber(buildingPrices['cadran-solaire'])} points = Cadran solaire (+0.1 pt/s) [x${buildings['cadran-solaire']}]`;
-    document.getElementById('b2').textContent = `${formatNumber(buildingPrices['sablier'])} points = Sablier (+1 pt/s) [x${buildings['sablier']}]`;
-    document.getElementById('b3').textContent = `${formatNumber(buildingPrices['horloge-a-coucou'])} points = Horloge à coucou (+8 pts/s) [x${buildings['horloge-a-coucou']}]`;
-    document.getElementById('b4').textContent = `${formatNumber(buildingPrices['montre-de-poche'])} points = Montre de poche (+47 pts/s) [x${buildings['montre-de-poche']}]`;
-    document.getElementById('b5').textContent = `${formatNumber(buildingPrices['calendrier-perpetuel'])} points = Calendrier perpétuel (+260 pts/s) [x${buildings['calendrier-perpetuel']}]`;
-    document.getElementById('b6').textContent = `${formatNumber(buildingPrices['reveil'])} points = Réveil (+1 400 pts/s) [x${buildings['reveil']}]`;
-    document.getElementById('b7').textContent = `${formatNumber(buildingPrices['tourdelhorloge'])} points = Tour de l'horloge (+7 800 pts/s) [x${buildings['tourdelhorloge']}]`;
-    document.getElementById('b8').textContent = `${formatNumber(buildingPrices['temple-du-temps'])} points = Machine à remonter le temps (+40 000 pts/s) [x${buildings['temple-du-temps']}]`;
-    document.getElementById('b9').textContent = `${formatNumber(buildingPrices['chronometre-universel'])} points = Chronomètre universel (+260 000 pts/s) [x${buildings['chronometre-universel']}]`;
-    document.getElementById('b10').textContent = `${formatNumber(buildingPrices['machine-a-remonter-le-temps'])} points = Temple du temps (+1.6 million pts/s) [x${buildings['machine-a-remonter-le-temps']}]`;
-    document.getElementById('b11').textContent = `${formatNumber(buildingPrices['spirale-temporelle'])} points = Spirale temporelle (+10 millions pts/s) [x${buildings['spirale-temporelle']}]`;
-    document.getElementById('b12').textContent = `${formatNumber(buildingPrices['station-temporelle'])} points = Station temporelle (+65 millions pts/s) [x${buildings['station-temporelle']}]`;
-    document.getElementById('b13').textContent = `${formatNumber(buildingPrices['astrolabe-mystique'])} points = Astrolabe mystique (+430 millions pts/s) [x${buildings['astrolabe-mystique']}]`;
-    document.getElementById('b14').textContent = `${formatNumber(buildingPrices['cristal-du-temps'])} points = Cristal du temps (+2.9 milliards pts/s) [x${buildings['cristal-du-temps']}]`;
-    document.getElementById('b15').textContent = `${formatNumber(buildingPrices['observatoire-temporel'])} points = Observatoire temporel (+21 milliards pts/s) [x${buildings['observatoire-temporel']}]`;
+    document.getElementById('b1').textContent = `${formatNumberWithAbbreviation(buildingPrices['cadran-solaire'])} points = Cadran solaire (+0.1 pt/s) [x${buildings['cadran-solaire']}]`;
+    document.getElementById('b2').textContent = `${formatNumberWithAbbreviation(buildingPrices['sablier'])} points = Sablier (+1 pt/s) [x${buildings['sablier']}]`;
+    document.getElementById('b3').textContent = `${formatNumberWithAbbreviation(buildingPrices['horloge-a-coucou'])} points = Horloge à coucou (+8 pts/s) [x${buildings['horloge-a-coucou']}]`;
+    document.getElementById('b4').textContent = `${formatNumberWithAbbreviation(buildingPrices['montre-de-poche'])} points = Montre de poche (+47 pts/s) [x${buildings['montre-de-poche']}]`;
+    document.getElementById('b5').textContent = `${formatNumberWithAbbreviation(buildingPrices['calendrier-perpetuel'])} points = Calendrier perpétuel (+260 pts/s) [x${buildings['calendrier-perpetuel']}]`;
+    document.getElementById('b6').textContent = `${formatNumberWithAbbreviation(buildingPrices['reveil'])} points = Réveil (+1 400 pts/s) [x${buildings['reveil']}]`;
+    document.getElementById('b7').textContent = `${formatNumberWithAbbreviation(buildingPrices['tourdelhorloge'])} points = Tour de l'horloge (+7 800 pts/s) [x${buildings['tourdelhorloge']}]`;
+    document.getElementById('b8').textContent = `${formatNumberWithAbbreviation(buildingPrices['temple-du-temps'])} points = Machine à remonter le temps (+40 000 pts/s) [x${buildings['temple-du-temps']}]`;
+    document.getElementById('b9').textContent = `${formatNumberWithAbbreviation(buildingPrices['chronometre-universel'])} points = Chronomètre universel (+260 000 pts/s) [x${buildings['chronometre-universel']}]`;
+    document.getElementById('b10').textContent = `${formatNumberWithAbbreviation(buildingPrices['machine-a-remonter-le-temps'])} points = Temple du temps (+1.6 million pts/s) [x${buildings['machine-a-remonter-le-temps']}]`;
+    document.getElementById('b11').textContent = `${formatNumberWithAbbreviation(buildingPrices['spirale-temporelle'])} points = Spirale temporelle (+10 millions pts/s) [x${buildings['spirale-temporelle']}]`;
+    document.getElementById('b12').textContent = `${formatNumberWithAbbreviation(buildingPrices['station-temporelle'])} points = Station temporelle (+65 millions pts/s) [x${buildings['station-temporelle']}]`;
+    document.getElementById('b13').textContent = `${formatNumberWithAbbreviation(buildingPrices['astrolabe-mystique'])} points = Astrolabe mystique (+430 millions pts/s) [x${buildings['astrolabe-mystique']}]`;
+    document.getElementById('b14').textContent = `${formatNumberWithAbbreviation(buildingPrices['cristal-du-temps'])} points = Cristal du temps (+2.9 milliards pts/s) [x${buildings['cristal-du-temps']}]`;
+    document.getElementById('b15').textContent = `${formatNumberWithAbbreviation(buildingPrices['observatoire-temporel'])} points = Observatoire temporel (+21 milliards pts/s) [x${buildings['observatoire-temporel']}]`;
 
     updateButtonStates();
 }
