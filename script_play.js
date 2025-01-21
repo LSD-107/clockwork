@@ -3,15 +3,32 @@ window.onload = () => {
     updateButtonStates();
 };
 
-const audio = new Audio("musiques/index.mp3");
-audio.loop = true;
-audio.volume = 0.3;
+        const audio = new Audio("musiques/index.mp3");
+        audio.loop = true;
+        audio.volume = 0.3;
 
-document.addEventListener("click", () => {
-    audio.play().catch(err => {
-        console.error("La lecture de la musique a échoué : ", err);
-    });
-}, { once: true });
+        document.addEventListener("click", () => {
+            audio.play().catch(err => {
+                console.error("La lecture de la musique a échoué : ", err);
+            });
+        }, { once: true });
+
+        const volumeButton = document.getElementById("volume-button");
+        const volumeControl = document.getElementById("volume-control");
+        const volumeSlider = document.getElementById("volume-slider");
+        const closeButton = document.getElementById("close-button");
+
+        volumeButton.addEventListener("click", () => {
+            volumeControl.style.display = "flex";
+        });
+
+        closeButton.addEventListener("click", () => {
+            volumeControl.style.display = "none";
+        });
+
+        volumeSlider.addEventListener("input", (event) => {
+            audio.volume = event.target.value;
+        });
 
 const canvas = document.getElementById('particlesCanvas');
 const ctx = canvas.getContext('2d');
