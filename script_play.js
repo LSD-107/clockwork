@@ -3,32 +3,32 @@ window.onload = () => {
     updateButtonStates();
 };
 
-        const audio = new Audio("musiques/index.mp3");
-        audio.loop = true;
-        audio.volume = 0.3;
+const audio = new Audio("musiques/index.mp3");
+audio.loop = true;
+audio.volume = 0.3;
 
-        document.addEventListener("click", () => {
-            audio.play().catch(err => {
-                console.error("La lecture de la musique a échoué : ", err);
-            });
-        }, { once: true });
+document.addEventListener("click", () => {
+    audio.play().catch(err => {
+        console.error("La lecture de la musique a échoué : ", err);
+    });
+}, { once: true });
 
-        const volumeButton = document.getElementById("volume-button");
-        const volumeControl = document.getElementById("volume-control");
-        const volumeSlider = document.getElementById("volume-slider");
-        const closeButton = document.getElementById("close-button");
+const volumeButton = document.getElementById("volume-button");
+const volumeControl = document.getElementById("volume-control");
+const volumeSlider = document.getElementById("volume-slider");
+const closeButton = document.getElementById("close-button");
 
-        volumeButton.addEventListener("click", () => {
-            volumeControl.style.display = "flex";
-        });
+volumeButton.addEventListener("click", () => {
+    volumeControl.style.display = "flex";
+});
 
-        closeButton.addEventListener("click", () => {
-            volumeControl.style.display = "none";
-        });
+closeButton.addEventListener("click", () => {
+    volumeControl.style.display = "none";
+});
 
-        volumeSlider.addEventListener("input", (event) => {
-            audio.volume = event.target.value;
-        });
+volumeSlider.addEventListener("input", (event) => {
+    audio.volume = event.target.value;
+});
 
 const canvas = document.getElementById('particlesCanvas');
 const ctx = canvas.getContext('2d');
@@ -155,10 +155,10 @@ let upgrades = [
     { id: 'leneuf-click', name: '1 clic = 20 points', cost: 50000, increment: 12 },
     { id: 'super-click', name: '1 clic = 40 points', cost: 100000, increment: 40 },
     { id: 'mega-click', name: '1 clic = 400 points', cost: 10000000, increment: 400 },
-    { id: 'ultra-click', name: '1 clic = 8000 points', cost: 100000000, increment: 8000 },
+    { id: 'ultra-click', name: '1 clic = 8 000 points', cost: 100000000, increment: 8000 },
     { id: 'god-click', name: '1 clic = 160 000 points', cost: 10000000000, increment: 160000 },
-    { id: 'legendary-click', name: '1 clic = 3200000 points', cost: 10000000000000, increment: 3200000 },
-    { id: 'divine-click', name: '1 clic = 64000000 points', cost: 10000000000000000, increment: 64000000 }
+    { id: 'legendary-click', name: '1 clic = 3.2 millions de points', cost: 10000000000000, increment: 3200000 },
+    { id: 'divine-click', name: '1 clic = 64 millions de points', cost: 10000000000000000, increment: 64000000 }
 ];
 
 const counterDisplay = document.getElementById('counter');
@@ -166,6 +166,38 @@ const compteurButton = document.getElementById('compteur');
 const cpsDisplay = document.getElementById('cps');
 const upgradeDescription = document.getElementById('upgrade-description');
 const buyUpgradeButton = document.getElementById('buy-upgrade');
+
+function formatNumberWithAbbreviation(number) {
+    if (number >= 1e15) {
+        return (number / 1e15).toFixed(1) + " billiards";
+    } else if (number >= 1e12) {
+        return (number / 1e12).toFixed(1) + " billions";
+    } else if (number >= 1e9) {
+        return (number / 1e9).toFixed(1) + " milliards";
+    } else if (number >= 1e6) {
+        return (number / 1e6).toFixed(1) + " millions";
+    } else {
+        return number.toString();
+    }
+}
+
+function formatNumberWithAbbreviationv2(number) {
+    if (number >= 1e15) {
+        return (number / 1e15).toFixed(0) + " billiards";
+    } else if (number >= 1e12) {
+        return (number / 1e12).toFixed(0) + " billions";
+    } else if (number >= 1e9) {
+        return (number / 1e9).toFixed(0) + " milliards";
+    } else if (number >= 1e6) {
+        return (number / 1e6).toFixed(0) + " millions";
+    } else {
+        return number.toString();
+    }
+}
+
+function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
 
 function updateCounterDisplay() {
     counterDisplay.textContent = counter.toFixed(0);
@@ -208,31 +240,12 @@ function updateButtonStates() {
     });
 }
 
-
-function formatNumber(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-}
-
 function updateCounterDisplay() {
     counterDisplay.textContent = formatNumber(counter.toFixed(0));
     updateUpgradeInfo();
     updateButtonStates(); // Ajouter cet appel ici
 }
 
-
-function formatNumberWithAbbreviation(number) {
-    if (number >= 1e15) {
-        return (number / 1e15).toFixed(1) + " Billiards";
-	} else if (number >= 1e12) {
-        return (number / 1e12).toFixed(1) + " Billions";
-	} else if (number >= 1e9) {
-        return (number / 1e9).toFixed(1) + " milliards";
-    } else if (number >= 1e6) {
-        return (number / 1e6).toFixed(1) + " millions";
-    } else {
-        return number.toString();
-    }
-}
 
 function updateBuildingPrices() {
     document.getElementById('b1').textContent = `${formatNumberWithAbbreviation(buildingPrices['cadran-solaire'])} points = Cadran solaire (+0.1 pt/s) [x${buildings['cadran-solaire']}]`;
@@ -254,14 +267,12 @@ function updateBuildingPrices() {
     updateButtonStates();
 }
 
-function formatNumber(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-}
+
 function updateCPSDisplay() {
     let cps = (buildings['cadran-solaire'] * 0.1) + (buildings['sablier'] * 1) + (buildings['horloge-a-coucou'] * 8) + (buildings['montre-de-poche'] * 47) + (buildings['calendrier-perpetuel'] * 260) + (buildings['reveil'] * 1400) + (buildings['tourdelhorloge'] * 7800) + (buildings['temple-du-temps'] * 40000) + (buildings['chronometre-universel'] * 260000) + (buildings['machine-a-remonter-le-temps'] * 1600000) + (buildings['spirale-temporelle'] * 10000000) + (buildings['station-temporelle'] * 65000000) + (buildings['astrolabe-mystique'] * 430000000) + (buildings['cristal-du-temps'] * 2900000000) + (buildings['observatoire-temporel'] * 21000000000);
     cpsDisplay.innerHTML = `
 		<span>Points par seconde :</span><br>
-		<span>${formatNumber(cps.toFixed(1))}</span>
+		<span>${formatNumberWithAbbreviation(cps.toFixed(1))}</span>
 	`;
 }
 
@@ -308,9 +319,10 @@ function addTrophy(trophyName) {
     }
 }
 
+
 function checkForTrophies() {
     clickThresholds.forEach(threshold => {
-        const trophyName = `Atteint ${formatNumber(threshold)} points`;
+        const trophyName = `Atteint ${formatNumberWithAbbreviationv2(threshold)} points`;
         if (counter >= threshold && !trophies.includes(trophyName)) {
             addTrophy(trophyName);
         }
@@ -462,19 +474,19 @@ function createRandomButton() {
     button.style.top = `${Math.max(0, y)}px`;
 
     buttonVisible = true;
-button.addEventListener('click', () => {
-    const addition = Math.random() < 0.5 ? 0.4 : 0.6;
-    const additionValue = Math.floor(counter * addition);
-    counter += additionValue;
-    updateCounterDisplay();
-    
-    showCustomAlert(`+${formatNumber(additionValue)} points`);
-    
-    localStorage.setItem('clickCount', counter);
-    
-    document.body.removeChild(button);
-    buttonVisible = false;
-});
+    button.addEventListener('click', () => {
+        const addition = Math.random() < 0.5 ? 0.4 : 0.6;
+        const additionValue = Math.floor(counter * addition);
+        counter += additionValue;
+        updateCounterDisplay();
+
+        showCustomAlert(`+${formatNumber(additionValue)} points`);
+
+        localStorage.setItem('clickCount', counter);
+
+        document.body.removeChild(button);
+        buttonVisible = false;
+    });
 
 
     document.body.appendChild(button);
@@ -529,14 +541,10 @@ function showCustomAlert(message) {
 
 randomButtonGenerator();
 
-function formatNumber(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-}
-
 function updateUpgradeInfo() {
     if (currentUpgradeIndex < upgrades.length) {
         const upgrade = upgrades[currentUpgradeIndex];
-        upgradeDescription.innerHTML = `Prochaine amélioration : <br>${upgrade.name} (${formatNumber(upgrade.cost)} points)`;
+        upgradeDescription.innerHTML = `Prochaine amélioration : <br>${upgrade.name} (${formatNumberWithAbbreviation(upgrade.cost)} points)`;
         buyUpgradeButton.disabled = counter < upgrade.cost;
     } else {
         upgradeDescription.textContent = "Toutes les améliorations ont été achetées.";
