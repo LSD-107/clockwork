@@ -41,6 +41,7 @@ resizeCanvas();
 
 window.addEventListener('resize', () => {
     resizeCanvas();
+    particlesArray = [];
     initParticles();
 });
 
